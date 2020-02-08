@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+   <head id="head">
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="main.js"></script>
+   </head>
+   <body onload="generateQuestions()">
+      <form id="regForm" action="/submit" method="POST">
+      </form>
+      <script>
+         function onYouTubeIframeAPIReady() {
+         var audioelems = document.getElementsByClassName("youtube-audio");
+         for(let i = 0; i < audioelems.length; i++){
+           let el = audioelems[i];
+             let id = el.dataset.video;
+             el.innerHTML = '<img class="youtube-icon" id="youtube-icon'+id+'" src=""/><div id="youtube-player'+id+'"></div>';
+             el.style.cssText = 'margin:2em auto;cursor:pointer;cursor:hand;';
+             el.onclick = toggleAudio;
+         
+             players.push({
+                 id: id,
+                 player: new YT.Player('youtube-player'+id, {
+                           height: '0',
+                           width: '0',
+                           videoId: id,
+                           playerVars: {
+                               autoplay: el.dataset.autoplay,
+                               loop: el.dataset.loop,
+                           },
+                           events: {
+                               'onStateChange': onPlayerStateChange,
+                               'onReady': onPlayerReady
+                           } 
+                         })
+             });
+         }
+         } 
+      </script>
+   </body>
+</html>
